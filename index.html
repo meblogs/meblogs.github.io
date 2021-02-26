@@ -171,120 +171,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://meblogs.github.io/2018/06/21/this/" data-id="ckllvj18h00008cqxd5h047j8" data-title="JavaScript基础语法——this" class="article-share-link">Share</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-this_01" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2018/06/21/this_01/" class="article-date">
-  <time class="dt-published" datetime="2018-06-21T02:11:41.000Z" itemprop="datePublished">2018-06-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2018/06/21/this_01/">JavaScript基础语法——this</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <!-- Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues). -->
-<hr>
-<br>
-<img src="/.io//js.png" width="60%" heigth="100">
-<!-- <img src='68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323032302f342f362f313731346635303338643138633532623f773d36363326683d38393426663d706e6726733d323039383330' width='60%' height="100"> -->
-
-<h2 id="什么是this"><a href="#什么是this" class="headerlink" title="什么是this"></a>什么是this</h2><hr>
-<font size="3" style="line-height:30px">
-    在传统面向对象的语言中，比如Java，this关键字用来表示当前对象本身，或当前对象的一个实例，通过this关键字可以获得当前对象的属性和调用方法。<br>
-    在JavaScript中，this似乎表现地略有不同，这也是让人“讨厌”的地方~ <br>
-    ECMAScript规范中这样写：this关键字执行为当前执行环境的 ThisBinding。
-<br>MDN上这样写：在绝大多数情况下，函数的调用方式决定了this的值。
-
-<p><strong>可以这样理解，在JavaScript中，this的指向是调用时决定的，而不是创建时决定的，这就会导致this的指向会让人迷惑，简单来说，this具有运行期绑定的特性。</strong><br>参考资料: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/this">关于this</a><br></p></font><br><p></p>
-<h2 id="调用位置"><a href="#调用位置" class="headerlink" title="调用位置"></a>调用位置</h2><hr>
-<p>首先需要理解调用位置，调用位置就是函数在代码中被调用的位置，而不是声明的位置。<br>通过分析调用栈（到达当前执行位置所调用的所有函数）可以找到调用位置。</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">function</span> <span class="function"><span class="title">baz</span></span>()&#123;</span><br><span class="line">  console.log(<span class="string">&quot;baz&quot;</span>);</span><br><span class="line">  bar();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">bar</span></span>()&#123;</span><br><span class="line">  console.log(<span class="string">&quot;bar&quot;</span>);</span><br><span class="line">  foo();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line">  console.log(<span class="string">&quot;foo&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line">baz();</span><br></pre></td></tr></table></figure>
-<p>当我们调用baz()时，它会以此调用baz()→bar()→foo()。</p>
-<p>对于foo()：调用位置是在bar()中。<br>对于bar()：调用位置是在baz()中。<br>而对于baz()：调用位置是全局作用域中。</p>
-<p>可以看出，调用位置应该是当前正在执行的函数的前一个调用中。</p>
-<h2 id="全局上下文"><a href="#全局上下文" class="headerlink" title="全局上下文"></a>全局上下文</h2><hr>
-<p>在全局执行上下文中this都指代全局对象。</p>
-<ul>
-<li>this等价于window对象</li>
-<li>var === this. === winodw.</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">console.log(window === this); // <span class="literal">true</span></span><br><span class="line">var a = 1;</span><br><span class="line">this.b = 2;</span><br><span class="line">window.c = 3;</span><br><span class="line">console.log(a + b + c); // 6</span><br></pre></td></tr></table></figure>
-<p><strong>在浏览器里面this等价于window对象，如果你声明一些全局变量，这些变量都会作为this的属性。</strong></p>
-<h2 id="函数上下文"><a href="#函数上下文" class="headerlink" title="函数上下文"></a>函数上下文</h2><hr>
-<p><strong>##在函数内部，this的值取决于函数被调用的方式。</strong></p>
-<h3 id="一、直接调用"><a href="#一、直接调用" class="headerlink" title="一、直接调用"></a>一、直接调用</h3><p><strong>this指向全局变量。</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>()&#123;</span><br><span class="line">  <span class="built_in">return</span> this;</span><br><span class="line">&#125;</span><br><span class="line">console.log(foo() === window); // <span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<h4 id="call-apply"><a href="#call-apply" class="headerlink" title="call()/apply()"></a>call()/apply()</h4><p><strong>this 指向绑定的对象</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">  name: <span class="string">&quot;axuebin&quot;</span>,</span><br><span class="line">  age: 25</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">function</span> say(job)&#123;</span><br><span class="line">  console.log(this.name+<span class="string">&quot;:&quot;</span>+this.age+<span class="string">&quot; &quot;</span>+job);</span><br><span class="line">&#125;</span><br><span class="line">say.call(person,<span class="string">&quot;FE&quot;</span>); // axuebin:25</span><br><span class="line">say.apply(person,[<span class="string">&quot;FE&quot;</span>]); // axuebin:25</span><br></pre></td></tr></table></figure>
-<p>可以看到，定义了一个say函数是用来输出name、age和job，其中本身没有name和age属性，我们将这个函数绑定到person这个对象上，输出了本属于person的属性，说明此时this是指向对象person的。</p>
-<p>如果传入一个原始值（字符串、布尔或数字类型）来当做this的绑定对象， 这个原始值会被转换成它的对象形式（new String()），这通常被称为“装箱”。</p>
-<p>call和apply从this的绑定角度上来说是一样的，唯一不同的是它们的第二个参数。</p>
-<h4 id="bind"><a href="#bind" class="headerlink" title="bind()"></a>bind()</h4><p><strong>this将永久地被绑定到了bind的第一个参数。</strong></p>
-<p>bind和call、apply有些相似,后两者会立即执行，<strong>而bind 返回一个新的函数，需要手动调用</strong>。</p>
-<h3 id="二、箭头函数"><a href="#二、箭头函数" class="headerlink" title="二、箭头函数"></a>二、箭头函数</h3><p><strong>所有的箭头函数都没有自己的this，都指向外层。</strong><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/vajoy/p/4902935.html">ES6 箭头函数中的 this？你可能想多了（翻译）</a><br><a target="_blank" rel="noopener" href="https://github.com/ruanyf/es6tutorial/issues/150">关于箭头函数this的理解几乎完全是错误的 #150</a></p>
-<p>MDN中对于箭头函数这一部分是这样描述的：<strong>箭头函数会捕获其所在上下文的this值，作为自己的this值</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.say = () =&gt; &#123;</span><br><span class="line">    var name = <span class="string">&quot;xb&quot;</span>;</span><br><span class="line">    <span class="built_in">return</span> this.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Person(<span class="string">&quot;axuebin&quot;</span>);</span><br><span class="line">console.log(person.say()); // axuebin</span><br></pre></td></tr></table></figure>
-<p>箭头函数常用语回调函数中，例如定时器中：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">foo</span></span>() &#123;  </span><br><span class="line">  setTimeout(()=&gt;&#123;</span><br><span class="line">    console.log(this.a);</span><br><span class="line">  &#125;,100)</span><br><span class="line">&#125;</span><br><span class="line">var obj = &#123;</span><br><span class="line">  a: 2</span><br><span class="line">&#125;</span><br><span class="line">foo.call(obj);</span><br></pre></td></tr></table></figure>
-<p>附上MDN关于箭头函数this的解释：<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions#%E4%B8%8D%E7%BB%91%E5%AE%9A_this">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Functions/Arrow_functions#不绑定_this</a></p>
-<h3 id="三、作为对象的一个方法"><a href="#三、作为对象的一个方法" class="headerlink" title="三、作为对象的一个方法"></a>三、作为对象的一个方法</h3><p><strong>this指向调用函数的对象。</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">var person = &#123;</span><br><span class="line">  name: <span class="string">&quot;axuebin&quot;</span>,</span><br><span class="line">  getName: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(person.getName()); // axuebin</span><br></pre></td></tr></table></figure>
-<p>这里有一个需要注意的地方。。。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var name = <span class="string">&quot;xb&quot;</span>;</span><br><span class="line">var person = &#123;</span><br><span class="line">  name: <span class="string">&quot;axuebin&quot;</span>,</span><br><span class="line">  getName: <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    <span class="built_in">return</span> this.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var getName = person.getName;</span><br><span class="line">console.log(getName()); // xb</span><br></pre></td></tr></table></figure>
-<p>发现this又指向全局变量了，这是为什么呢？<br>还是那句话，this的指向得看函数调用时。</p>
-<h3 id="四、作为一个构造函数"><a href="#四、作为一个构造函数" class="headerlink" title="四、作为一个构造函数"></a>四、作为一个构造函数</h3><p><strong>this被绑定到正在构造的新对象。也就是new 出来的实例</strong></p>
-<p> 通过构造函数创建一个对象其实执行这样几个步骤：</p>
-<ul>
-<li>创建新对象</li>
-<li>将this指向这个对象</li>
-<li>给对象赋值（属性、方法）</li>
-<li>返回this</li>
-</ul>
-<p>所以this就是指向创建的这个对象上。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> Person(name)&#123;</span><br><span class="line">  this.name = name;</span><br><span class="line">  this.age = 25;</span><br><span class="line">  this.say = <span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">    console.log(this.name + <span class="string">&quot;:&quot;</span> + this.age);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">var person = new Person(<span class="string">&quot;axuebin&quot;</span>);</span><br><span class="line">console.log(person.name); // axuebin</span><br><span class="line">person.say(); // axuebin:25</span><br></pre></td></tr></table></figure>
-<h3 id="五、作为一个DOM事件处理函数"><a href="#五、作为一个DOM事件处理函数" class="headerlink" title="五、作为一个DOM事件处理函数"></a>五、作为一个DOM事件处理函数</h3><p><strong>this指向触发事件的元素，也就是始事件处理程序所绑定到的DOM节点。</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">var ele = document.getElementById(<span class="string">&quot;id&quot;</span>);</span><br><span class="line">ele.addEventListener(<span class="string">&quot;click&quot;</span>,<span class="keyword">function</span>(e)&#123;</span><br><span class="line">  console.log(this);</span><br><span class="line">  console.log(this === e.target); // <span class="literal">true</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="六、HTML标签内联事件处理函数"><a href="#六、HTML标签内联事件处理函数" class="headerlink" title="六、HTML标签内联事件处理函数"></a>六、HTML标签内联事件处理函数</h3><p><strong>this指向所在的DOM元素</strong></p>
-<p><code>&lt;button onclick=&quot;console.log(this);&quot;&gt;Click Me&lt;/button&gt;</code></p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>如果要判断一个函数的this绑定，就需要找到这个函数的直接调用位置。然后可以顺序按照下面四条规则来判断this的绑定对象：</strong><br><strong>1.由new调用：绑定到新创建的对象</strong><br><strong>2.由call或apply、bind调用：绑定到指定的对象</strong><br><strong>3.由上下文对象调用：绑定到上下文对象</strong><br><strong>4.默认：全局对象</strong></p>
-<p>注意：箭头函数不使用上面的绑定规则，根据外层作用域来决定this，继承外层函数调用的this绑定。<br><br></p>
-<p>相关链接:</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d647aa6d1ae6">全方位解读this</a> <a target="_blank" rel="noopener" href="https://github.com/axuebin/articles/issues/39">…</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/mqyqingfeng/Blog/issues/7">JavaScript深入之从ECMAScript规范解读this</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xxcanghai/p/5189353.html">一道常被人轻视的前端JS面试题</a></li>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903746984476686">面试官问：JS的指向</a> </li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://meblogs.github.io/2018/06/21/this_01/" data-id="ckllvj18l00018cqxe27jg0c2" data-title="JavaScript基础语法——this" class="article-share-link">Share</a>
+      <a data-url="http://meblogs.github.io/2018/06/21/this/" data-id="ckllvpk64000094qxhq98dbj3" data-title="JavaScript基础语法——this" class="article-share-link">Share</a>
       
       
       
@@ -344,10 +231,6 @@
         
           <li>
             <a href="/2018/06/21/this/">JavaScript基础语法——this</a>
-          </li>
-        
-          <li>
-            <a href="/2018/06/21/this_01/">JavaScript基础语法——this</a>
           </li>
         
       </ul>
