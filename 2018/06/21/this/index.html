@@ -6,17 +6,17 @@
   
   <title>JavaScript基础语法——this | 小马哥随笔</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="什么是this      在传统面向对象的语言中，比如Java，this关键字用来表示当前对象本身，或当前对象的一个实例，通过this关键字可以获得当前对象的属性和调用方法。     在JavaScript中，this似乎表现地略有不同，这也是让人“讨厌”的地方~      ECMAScript规范中这样写：this关键字执行为当前执行环境的 ThisBinding。 MDN上这样写：">
+  <meta name="description" content="什么是this      在传统面向对象的语言中，比如Java，this关键字用来表示当前对象本身，或当前对象的一个实例，通过this关键字可以获得当前对象的属性和调用方法。     在JavaScript中，this似乎表现地略有不同，这也是让人“讨厌”的地方~      ECMAScript规范中这样写：this关键字执行为当前执行环境的 ThisBinding。 MDN上这样写">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript基础语法——this">
-<meta property="og:url" content="http://meblogs.github.io/2018/06/21/this_01/index.html">
+<meta property="og:url" content="http://meblogs.github.io/2018/06/21/this/index.html">
 <meta property="og:site_name" content="小马哥随笔">
-<meta property="og:description" content="什么是this      在传统面向对象的语言中，比如Java，this关键字用来表示当前对象本身，或当前对象的一个实例，通过this关键字可以获得当前对象的属性和调用方法。     在JavaScript中，this似乎表现地略有不同，这也是让人“讨厌”的地方~      ECMAScript规范中这样写：this关键字执行为当前执行环境的 ThisBinding。 MDN上这样写：">
+<meta property="og:description" content="什么是this      在传统面向对象的语言中，比如Java，this关键字用来表示当前对象本身，或当前对象的一个实例，通过this关键字可以获得当前对象的属性和调用方法。     在JavaScript中，this似乎表现地略有不同，这也是让人“讨厌”的地方~      ECMAScript规范中这样写：this关键字执行为当前执行环境的 ThisBinding。 MDN上这样写">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://meblogs.github.io/.io//js.png">
-<meta property="og:image" content="http://meblogs.github.io/2018/06/21/this_01/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323032302f342f362f313731346635303338643138633532623f773d36363326683d38393426663d706e6726733d323039383330">
+<meta property="og:image" content="http://meblogs.github.io/2018/06/21/this/68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323032302f342f362f313731346635303338643138633532623f773d36363326683d38393426663d706e6726733d323039383330">
 <meta property="article:published_time" content="2018-06-21T02:11:41.000Z">
-<meta property="article:modified_time" content="2021-02-20T06:32:18.653Z">
+<meta property="article:modified_time" content="2021-02-26T05:46:54.717Z">
 <meta property="article:author" content="小马哥">
 <meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
@@ -77,9 +77,9 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-this_01" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-this" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2018/06/21/this_01/" class="article-date">
+    <a href="/2018/06/21/this/" class="article-date">
   <time class="dt-published" datetime="2018-06-21T02:11:41.000Z" itemprop="datePublished">2018-06-21</time>
 </a>
     
@@ -103,6 +103,7 @@
 <hr>
 <br>
 <img src="/.io//js.png" width="60%" heigth="100">
+<!-- ![你想输入的替代文字](this/js.png) -->
 <!-- <img src='68747470733a2f2f757365722d676f6c642d63646e2e786974752e696f2f323032302f342f362f313731346635303338643138633532623f773d36363326683d38393426663d706e6726733d323039383330' width='60%' height="100"> -->
 
 <h2 id="什么是this"><a href="#什么是this" class="headerlink" title="什么是this"></a>什么是this</h2><hr>
@@ -176,7 +177,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://meblogs.github.io/2018/06/21/this_01/" data-id="ckllvj18l00018cqxe27jg0c2" data-title="JavaScript基础语法——this" class="article-share-link">Share</a>
+      <a data-url="http://meblogs.github.io/2018/06/21/this/" data-id="ckllvj18h00008cqxd5h047j8" data-title="JavaScript基础语法——this" class="article-share-link">Share</a>
       
       
       
@@ -188,15 +189,11 @@
     
 <nav id="article-nav">
   
-    <a href="/2018/06/21/this/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          JavaScript基础语法——this
-        
-      </div>
-    </a>
   
+    <a href="/2018/06/21/this_01/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">JavaScript基础语法——this</div>
+    </a>
   
 </nav>
 
